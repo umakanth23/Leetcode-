@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void solve(TreeNode* root, int level, unordered_map<int,pair<int,int>>&mp )
+    {
+        if(root == NULL)
+            return ;
+        if(root->left != NULL)
+        {
+            mp[root->left->val] = {root->val,level+1};
+        }
+        if(root->right != NULL)
+        {
+            mp[root->right->val] = {root->val,level+1};
+        }
+        solve(root->left,level+1,mp);
+        solve(root->right,level+1,mp);
+    }
+    bool isCousins(TreeNode* root, int x, int y) 
+    {
+        if(root == NULL)
+            return false;
+        unordered_map<int,pair<int,int>>mp;
+        solve(root,0,mp);
+        
+        if((mp[x].first != mp[y].first) && (mp[x].second == mp[y].second))
+        {
+            return true;
+        }
+        return false;
+    
+    }
+};
