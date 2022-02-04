@@ -1,0 +1,20 @@
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int x) 
+    {
+        if(root == NULL)
+        {
+            TreeNode *curr = new TreeNode(x);
+            return curr;
+        }
+        if(root->val > x)
+        {
+            root->left = insertIntoBST(root->left,x);
+        }
+        else
+        {
+            root->right = insertIntoBST(root->right,x);
+        }
+        return root;
+    }
+};
