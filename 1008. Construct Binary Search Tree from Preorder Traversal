@@ -1,0 +1,29 @@
+class Solution {
+public:
+    TreeNode *insert(TreeNode *root, int x)
+    {
+        if(root == NULL)
+        {
+            return new TreeNode(x);
+        }
+        if(root->val > x)
+        {
+            root->left = insert(root->left,x);
+        }
+        else
+        {
+            root->right = insert(root->right,x);
+        }
+        return root;
+    }
+    TreeNode* bstFromPreorder(vector<int>& v) 
+    {
+        TreeNode *root =NULL;
+        int n = v.size();
+        for(int i=0;i<n;i++)
+        {
+            root = insert(root,v[i]);
+        }
+        return root;
+    }
+};
