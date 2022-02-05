@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int res = 0;
+    void fun(TreeNode* root, int l,int h)
+    {
+        if(root == NULL)
+            return ;
+        if(root->val >=l  && root->val <=h)
+        {
+            res = res + (root->val);
+        }
+        fun(root->left,l,h);
+        fun(root->right,l,h);
+    }
+    int rangeSumBST(TreeNode* root, int l, int h) 
+    {
+        if(root == NULL)
+            return 0;
+        
+        fun(root,l,h);
+        return res;
+    }
+};
