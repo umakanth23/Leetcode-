@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool fun(TreeNode *root, int t,unordered_set<int>&us)
+    {
+        if(root == NULL)
+            return false;
+        if(us.find(t-root->val) !=us.end())
+        {
+            return true;
+        }
+        else
+        {
+            us.insert(root->val);
+        }
+        return fun(root->left, t, us) || fun(root->right,t,us);
+    }
+        
+    bool findTarget(TreeNode* root, int t) 
+    {
+        if(root== NULL)
+            return false;
+        unordered_set<int>us;
+        return fun(root,t,us);
+    }
+};
