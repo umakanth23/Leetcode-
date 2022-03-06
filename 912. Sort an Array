@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) 
+    {
+        // Heapsort 
+        priority_queue<int>pq(nums.begin(),nums.end());
+        int n = nums.size();
+        int index =n-1 ;
+        while(pq.size())
+        {
+            nums[index--] = pq.top();
+            pq.pop();
+        }
+        return nums;
+    }
+};
