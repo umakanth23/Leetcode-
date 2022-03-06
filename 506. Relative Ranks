@@ -1,0 +1,56 @@
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& v) 
+    {   
+        int n = v.size();
+        priority_queue<int>pq(v.begin(),v.end());
+        unordered_map<int,string>mp;
+        int t = 1;
+        while(pq.size()!=0)
+        {
+            if(t == 1)
+            {
+                int p = pq.top();
+                pq.pop();
+                mp[p] = "Gold Medal";
+            }
+            else
+            {
+                if(t == 2)
+                {
+                    int p = pq.top();
+                    pq.pop();
+                    mp[p] = "Silver Medal";
+                }
+                else
+                {
+                    if(t == 3)
+                    {
+                        int p = pq.top();
+                        pq.pop();
+                        mp[p] = "Bronze Medal";
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            t++;
+            
+        }
+        while(pq.size())
+        {
+            int p = pq.top();
+            pq.pop();
+            mp[p] = to_string(t);
+            t++;
+        }
+        vector<string>res;
+        for(int i=0;i<n;i++)
+        {
+            res.push_back(mp[v[i]]);
+        }
+        return res;
+    }
+};
