@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& a, int target) 
+    {
+        int n = a.size();
+        int diff = INT_MAX;
+        int id1 = 0;
+        sort(a.begin(),a.end());
+        int result = INT_MAX;
+        for(id1 = 0;id1<n;id1++)
+        {
+            int id2 = id1+1;
+            int id3 = n-1;
+            while(id2<id3)
+            {
+                int sum = a[id1]+a[id2]+a[id3];
+                if(abs(sum-target)<diff)
+                {
+                    result = sum;
+                    diff = abs(sum-target);
+                }
+                
+                if(sum == target)
+                {
+                    return sum;
+                }
+                else
+                {
+                    if(sum<target)
+                    {
+                        id2++;
+                    }
+                    else
+                    {
+                        id3--;
+                    }
+                }
+            }
+           
+        }
+         return result;
+    }
+};
