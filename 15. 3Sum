@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& a) 
+    {
+        vector<vector<int>>v;
+        int  n = a.size();
+        int id1 = 0 ;
+        sort(a.begin(),a.end());
+        for(id1=0;id1<n-2;id1++)
+        {
+            if(id1>0 && a[id1] == a[id1-1])
+            {
+                continue;
+            }
+            // two pointer method;
+            int  id2 = id1+1;
+            int id3 = n-1;
+            while(id2<id3)
+            {
+                int sum = a[id1] + a[id2] + a[id3];
+                if(sum == 0)
+                {
+                    vector<int>c;
+                    c.push_back(a[id1]);
+                    c.push_back(a[id2]);
+                    c.push_back(a[id3]);
+                    v.push_back(c);
+                    id3--;
+                    while(id2<id3 && a[id3] == a[id3+1])
+                    {
+                        id3--;
+                    }
+                }
+                else
+                {
+                    if(sum<0)
+                    {
+                        id2++;
+                    }
+                    else
+                    {
+                        id3--;
+                    }
+                }
+                
+            }
+        }
+        return v;
+    }
+};
