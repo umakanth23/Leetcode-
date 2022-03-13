@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findKthPositive(vector<int>& a, int m) 
+    {
+        int n = a.size();    
+        int t = a[n-1] + m;
+        int cnt = 0;
+        unordered_set<int>us(a.begin(),a.end());
+        for(int i=1;i<=t;i++)
+        {
+            if(us.find(i)==us.end())
+            {
+                cnt ++;
+                if(cnt == m)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+};
