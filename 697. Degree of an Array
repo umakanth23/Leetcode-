@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& v) 
+    {
+        unordered_map<int,int>m;
+        int n = v.size();
+        int mf = 0;
+        unordered_map<int,pair<int,int>>mp;
+        for(int i=0;i<n;i++)
+        {
+            m[v[i]]++;
+            mf = max(mf,m[v[i]]);
+            
+            if(mp.find(v[i]) == mp.end())
+            {
+                mp[v[i]].first = i ;
+                mp[v[i]].second = i;
+            }
+            else
+            {
+                mp[v[i]].second = i;
+            }
+        }
+        // traverse freq map m;
+        int ans = n;
+        for(auto x : m)
+        {
+            if(x.second == mf)
+            {
+                auto it = mp[x.first];
+                
+                int st_ind = it.first;
+                int en_ind = it.second;
+                ans = min(ans, en_ind - st_ind +1);
+            }
+        }
+        return ans;
+    }
+};
