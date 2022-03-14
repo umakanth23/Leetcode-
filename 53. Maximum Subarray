@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& v) 
+    {
+        int meh = v[0];
+        int msf = v[0];
+        for(int i=1;i<v.size();i++)
+        {
+            meh = meh + v[i];
+            if(meh < v[i])
+                meh = v[i];
+            msf = max(msf,meh);
+        }
+        return msf;
+    }
+};
