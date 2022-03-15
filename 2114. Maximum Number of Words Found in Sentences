@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sent) 
+    {
+        int n = sent.size();
+        int res = 0;
+        for(int i=0;i<n;i++)
+        {
+            int m = sent[i].size();
+            string s = sent[i];
+            int space = 0;
+            for(int j = 1;j<m-1;j++)
+            {
+                if(s[j] == 32)
+                {
+                    space ++;
+                }
+            }
+            int words = space+1;  
+            res = max(res,words);
+        }
+        return res;
+    }
+};
