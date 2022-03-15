@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int heightChecker(vector<int>& a) 
+    {
+        vector<int>v(a.begin(),a.end());
+        sort(v.begin(),v.end());
+        int cnt = 0;
+        for(int i=0;i<v.size();i++)
+        {
+            if(v[i]!=a[i])
+                cnt++;
+        }
+        return cnt;
+    }
+};
