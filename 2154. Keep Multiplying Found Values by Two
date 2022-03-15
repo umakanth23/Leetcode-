@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findFinalValue(vector<int>& a, int x) 
+    {
+        unordered_set<int>us(a.begin(),a.end());
+        int t = x;
+        while(us.find(t)!=us.end())
+        {
+            t = t*2;
+        }
+        return t;
+    }
+};
