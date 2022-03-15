@@ -1,0 +1,33 @@
+class Solution {
+public:
+    static bool comp(int x, int y)
+    {   
+        int p = x , q = y;
+        int m =0, n=0;
+        for(int i=0;i<=31;i++)
+        {
+            m =  m + (x%2) ;
+            x = x/2;
+            n = n + (y%2);
+            y = y/2;
+        }
+        if(m<n)
+        {
+            return true;
+        }
+        else
+        {
+            if(m>n)
+                return false;
+            else
+            {
+                return p<q;
+            }
+        }
+    }
+    vector<int> sortByBits(vector<int>& a) 
+    {
+        sort(a.begin(),a.end(),comp);
+        return a;
+    }
+};
