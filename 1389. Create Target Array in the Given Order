@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) 
+    {
+        int n = nums.size();
+        vector<int>v;
+        for(int i=0;i<n;i++)
+        {
+            int ind = index[i];
+            int val = nums[i];
+            if(v.size() == 0)
+            {
+                v.push_back(val);
+            }
+            else
+            {
+                if(ind>=v.size())
+                {
+                    v.push_back(val);
+                }
+                else
+                {
+                    auto it = v.begin() + ind;
+                    v.insert(it,val);
+                }
+            }
+        }
+        return v;
+    }
+};
