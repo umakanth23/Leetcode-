@@ -1,0 +1,38 @@
+class Solution {
+public:
+    bool isHappy(int n) 
+    {
+        unordered_set<long long int >us;
+        us.insert(n);
+        long long int x = n;
+        while(x!=1)
+        {
+            long long int m = 0;
+            while(x)
+            {   
+                long long int t = x%10;
+                t = t*t;
+                m =  m + (t);
+                x = x/10;
+            }
+            if(m == 1)
+            {
+                return true;
+            }
+            else
+            {
+                if(us.find(m) !=us.end())
+                {
+                    return false;
+                }
+                else
+                {
+                    us.insert(m);
+                    x = m;
+                }
+            }
+                
+        }
+        return true;
+    }
+};
