@@ -1,0 +1,32 @@
+TreeNode* mergeTrees(TreeNode* r1, TreeNode* r2) 
+    {   
+        if(r1==NULL && r2==NULL)
+        {
+            return NULL;
+        }
+        
+        int x = r1!=NULL ? r1->val : 0;
+        int y = r2!=NULL ? r2->val : 0;
+        TreeNode *root = new TreeNode(x+y);
+        if(r1!=NULL && r2!=NULL)
+        {
+            root->left = mergeTrees(r1->left,r2->left);
+            root->right = mergeTrees(r1->right,r2->right);
+        }
+        else
+        {
+            if(r1==NULL)
+            {
+               root->left = mergeTrees(r1,r2->left); 
+               root->right = mergeTrees(r1,r2->right); 
+            }
+            else
+            {
+                root->left = mergeTrees(r1->left,r2); 
+                root->right = mergeTrees(r1->right,r2); 
+            }
+        }
+        
+        return root;
+    }
+};
