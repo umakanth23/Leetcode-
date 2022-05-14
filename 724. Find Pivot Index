@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& a) 
+    {
+        int n = a.size();
+        int sum =0;
+        for(auto x:a)
+        {
+            sum = sum+x;
+        }
+        int lsum = 0;
+        for(int i=0;i<n;i++)
+        {
+            int curr_sum = sum-lsum-a[i];
+            if(lsum == curr_sum)
+                return i;
+            lsum = lsum + a[i];
+        }
+        return -1;
+    }
+};
