@@ -1,0 +1,46 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* prev;
+    Node* next;
+    Node* child;
+};
+*/
+
+class Solution {
+public:
+    Node* flatten(Node* head) 
+    {
+        if(head == NULL)
+            return head;
+        Node *curr = head;
+        while(curr!=NULL)
+        {   
+            
+            if(curr->child!=NULL)
+            {
+                // curr node has a child node
+                Node *temp = curr->next ; // store next node link;
+                Node *child_node = flatten(curr->child);   
+                curr->next = child_node;
+                curr->child = NULL ; // removing child connection ;
+                child_node->prev = curr;
+                
+                while(curr->next!=NULL)
+                {
+                    curr = curr->next;
+                }
+                curr->next = temp;
+                
+                if(temp!=NULL)
+                {                   // this connecting with prev node child last                                            //node;
+                    temp->prev = curr;
+                }
+            }
+            curr = curr->next;
+        }
+        return head;
+    }
+};
