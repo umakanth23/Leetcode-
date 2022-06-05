@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> arrayChange(vector<int>& ar, vector<vector<int>>& op) 
+    {
+        map<int,int>mp1,mp2;
+        for(int i=0;i<ar.size();i++)
+        {
+            mp1[ar[i]] = i;
+            mp2[i] = ar[i];
+        }
+            
+        for(int i=0;i<op.size();i++)
+        {
+            int x = op[i][0];
+            int y = op[i][1];
+            
+            if(mp1.find(x)!=mp1.end())
+            {
+                int ind = mp1[x];
+                mp1.erase(x);
+                mp1[y] = ind;
+                mp2[ind] = y;
+            }
+        }
+        vector<int>res;
+        for(auto x:mp2)
+        {
+            res.push_back(x.second);
+        }
+        return res;
+    }
+};
+
+// Submitted Succesfully.
