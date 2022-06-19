@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int countKDifference(vector<int>& nums, int t) 
+    {
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++)
+        {
+            mp[nums[i]]++;
+        }
+        int cnt = 0;
+        for(int i=0;i<n;i++)
+        {
+            int x = nums[i];
+            int val = t+x;
+            if(mp.find(val)!=mp.end())
+            {
+                cnt = cnt + mp[val];
+            }
+        }
+        return cnt;
+    }
+        
+};
