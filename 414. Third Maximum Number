@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int find3max(unordered_set<int>&us)
+    {
+        // storing set elements into a vector
+        vector<int>v;
+        for(auto x:us)
+        {
+            v.push_back(x);
+        }
+        int n = v.size();
+        // creating a min Heap
+        priority_queue<int,vector<int>,greater<int>>pq;
+        int m = 3;
+        for(int i=0;i<m;i++)
+        {
+            pq.push(v[i]);
+        }
+        for(int i=m;i<n;i++)
+        {
+            if(v[i]>pq.top())
+            {
+                pq.pop();
+                pq.push(v[i]);
+            }
+        }
+        return pq.top();
+    }
+    int thirdMax(vector<int>& nums) 
+    {   
+        // storing into a set , to know count of distinct elements
+        unordered_set<int>us;
+        int n = nums.size();
+        for(int i=0;i<n;i++)
+        {
+            us.insert(nums[i]);
+        }
+        // if no of distinct elements are less than 3 , we return max               // element
+        int mx = *max_element(nums.begin(),nums.end());
+        if(us.size()<3)
+        {
+            return mx;
+        }
+        // finding 3rd max element using Heap data structure
+        int res = find3max(us);
+        return res;
+    }
+};
