@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void fun(vector<vector<int>>&res,int l,int r,vector<int>&ar)
+    {
+        if(l == r)
+        {
+            res.push_back(ar);
+            return;
+        }
+        for(int i=l;i<=r;i++)
+        {
+            swap(ar[i],ar[l]);
+            fun(res,l+1,r,ar);
+            swap(ar[i],ar[l]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) 
+    {
+        int n = nums.size();
+        vector<vector<int>>res;
+        vector<int>v;
+        fun(res,0,n-1,nums);
+        return res;
+    }
+};
