@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void fun(vector<string>&v,string s,int open,int close,int n)
+    {
+        if(open== n && close==n)
+        {
+            v.push_back(s);
+            return ;
+        }
+        if(open<n)
+        {   
+            s = s + '(';
+            fun(v,s,open+1,close,n);
+            s.pop_back();
+        }
+        if(close<open)
+        {   
+            s = s + ')';
+            fun(v,s,open,close+1,n);
+            s.pop_back();
+        }
+    }
+    vector<string> generateParenthesis(int n) 
+    {
+        vector<string>v;
+        //n = n*2;
+        int open = 0,close = 0;
+        fun(v,"",open,close,n);
+        return v;
+    }
+};
