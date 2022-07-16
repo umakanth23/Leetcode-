@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void fun(int ind,vector<int>&ar,int target,vector<int>&v,vector<vector<int>>&res)
+    {
+        if(ind==ar.size())
+        {
+            if(target==0)
+            {
+                res.push_back(v);
+            }
+            return;
+        }
+        //picking the ar[ind] element
+        if(ar[ind]<=target)
+        {
+            v.push_back(ar[ind]);
+            fun(ind,ar,target-ar[ind],v,res);
+            v.pop_back();
+        }
+        fun(ind+1,ar,target,v,res);
+    }
+    vector<vector<int>> combinationSum(vector<int>& ar, int target) 
+    {
+        vector<vector<int>>res;
+        vector<int>v;
+        int ind = 0;
+        fun(ind,ar,target,v,res);
+        return res;
+    }
+};
